@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
                 hasStarted = true;
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 10f);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 12f);
         }
         }
 	}
