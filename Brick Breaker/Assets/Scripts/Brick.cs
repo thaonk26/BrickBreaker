@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour {
     public int maxHits;
+    public Sprite[] hitSprites;
     private int timesHit;
     private LevelManager levelManager;
 
@@ -20,13 +21,28 @@ public class Brick : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         timesHit++;
-        if(maxHits >= timesHit)
+        Debug.Log("timesHit before: " + timesHit);
+        if(timesHit >= maxHits)
         {
             Destroy(gameObject);
+            Debug.Log("timesHit after: " + timesHit);
 
+        }
+        else
+        {
+            Debug.Log("timesHit after 2: " + timesHit);
+            LoadSprites();
         }
         //if(gameObject.)
         //SimulateWin();
+    }
+    void LoadSprites()
+    {
+        
+        int spriteIndex = timesHit - 1;
+        print(spriteIndex);
+        Debug.Log("INdex " + spriteIndex);
+        this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
     }
     void SimulateWin()
     {
