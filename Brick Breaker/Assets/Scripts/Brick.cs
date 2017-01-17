@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brick : MonoBehaviour {
-    public int maxHits;
     public Sprite[] hitSprites;
     private int timesHit;
     private LevelManager levelManager;
@@ -20,29 +19,43 @@ public class Brick : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        timesHit++;
-        Debug.Log("timesHit before: " + timesHit);
-        if(timesHit >= maxHits)
+        bool isBreakable = (this.tag == "Breakable");
+        if (isBreakable)
         {
-            Destroy(gameObject);
-            Debug.Log("timesHit after: " + timesHit);
 
+            HandleHits();
         }
-        else
-        {
-            Debug.Log("timesHit after 2: " + timesHit);
-            LoadSprites();
-        }
+       
         //if(gameObject.)
         //SimulateWin();
     }
     void LoadSprites()
     {
-        
         int spriteIndex = timesHit - 1;
         print(spriteIndex);
-        Debug.Log("INdex " + spriteIndex);
-        this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        if (hitSprites[spriteIndex])
+        {
+            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        }
+    }
+
+    void HandleHits()
+    {
+       
+        timesHit++;
+        int maxHits = hitSprites.Length + 1;
+        if (timesHit >= maxHits)
+        {
+            Destroy(gameObject);
+
+
+        }
+        else
+        {
+
+            LoadSprites();
+        }
+
     }
     void SimulateWin()
     {
