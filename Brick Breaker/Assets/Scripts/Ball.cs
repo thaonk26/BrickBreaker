@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour {
     private Paddle paddle;
     private Vector3 paddleToBallVector;
     bool hasStarted = false;
-    bool start = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +17,11 @@ public class Ball : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
     {
-        if (start)
+        Vector2 tweak = new Vector2(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+        if (hasStarted)
         {
             GetComponent<AudioSource>().Play();
-
+            gameObject.GetComponent<Rigidbody2D>().velocity += tweak;
         }
     }
 	// Update is called once per frame
@@ -31,8 +32,7 @@ public class Ball : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-                start = true;
-                hasStarted = true;
+            hasStarted = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 12f);
         }
         }

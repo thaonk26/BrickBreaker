@@ -26,6 +26,7 @@ public class Brick : MonoBehaviour {
 
         }
         levelManager = GameObject.FindObjectOfType<LevelManager>();
+        print("breakable initial count: " + breakableCount);
 	}
 	
 	// Update is called once per frame
@@ -34,7 +35,7 @@ public class Brick : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        AudioSource.PlayClipAtPoint(crack, transform.position);
+        AudioSource.PlayClipAtPoint(crack, Camera.main.transform.position);
         if (isBreakable)
         {
 
