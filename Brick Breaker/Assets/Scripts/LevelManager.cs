@@ -16,6 +16,13 @@ public class LevelManager : MonoBehaviour {
         Debug.Log("Level quit");
         Application.Quit();
     }
+    public void BrickDestryoed()
+    {
+        if (Brick.breakableCount <= 0)
+        {
+            LoadNextLevel();
+        }
+    }
     public void LoadNextLevel()
     {
         Application.LoadLevel(Application.loadedLevel + 1);
