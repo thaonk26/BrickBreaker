@@ -35,7 +35,7 @@ public class Brick : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        AudioSource.PlayClipAtPoint(crack, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(crack, Camera.main.transform.position, 0.8f);
         if (isBreakable)
         {
 
