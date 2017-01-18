@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brick : MonoBehaviour {
+
+    public AudioClip crack;
     public Sprite[] hitSprites;
     private int timesHit;
     private LevelManager levelManager;
@@ -32,6 +34,7 @@ public class Brick : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioSource.PlayClipAtPoint(crack, transform.position);
         if (isBreakable)
         {
 
